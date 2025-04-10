@@ -11,17 +11,8 @@ map("n", "<leader>bD", ":%bd|e#|bd#<CR>", opts)
 map("n", "<leader>bb", ":Telescope buffers<CR>", opts)
 --mouse on
 vim.o.mouse = "a"
+----remaping ctrl-u and d with j and k --half page scroll-----
+vim.keymap.set("n", "<C-j>", "<C-d>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", "<C-u>", { noremap = true, silent = true })
 
----tab keybind
--- Ctrl-t + n → New tab
-vim.keymap.set("n", "<C-t>n", ":tabnew<CR>", { desc = "New Tab", noremap = true, silent = true })
-
--- Ctrl-t + c → Close tab
-vim.keymap.set("n", "<C-t>c", ":tabclose<CR>", { desc = "Close Tab", noremap = true, silent = true })
-
--- Ctrl-t + l → Next tab
-vim.keymap.set("n", "<C-t>l", ":tabnext<CR>", { desc = "Next Tab", noremap = true, silent = true })
-
--- Ctrl-t + h → Previous tab
-vim.keymap.set("n", "<C-t>h", ":tabprev<CR>", { desc = "Previous Tab", noremap = true, silent = true })
 

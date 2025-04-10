@@ -1,4 +1,4 @@
- return {
+return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -19,8 +19,7 @@
 					"tailwindcss",
 					"emmet_ls",
 					"html",
-                    "ts_ls",
-                    "eslint"
+					"eslint",
 				},
 			})
 		end,
@@ -31,9 +30,12 @@
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- ✅ Disable formatting from some LSPs
 			local on_attach = function(client, bufnr)
-				if client.name == "html" or client.name == "cssls" or client.name == "emmet_ls" then
+				local disable_formatting_clients = {
+					"html", "cssls", "emmet_ls", "tsserver", "eslint", "typescript-tools"
+				}
+
+				if vim.tbl_contains(disable_formatting_clients, client.name) then
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end
@@ -58,15 +60,7 @@
 				on_attach = on_attach,
 			})
 
-            -- javasciprt server 
-			-- lspconfig.ts_ls.setup({
-			-- 	capabilities = capabilities,
-			-- 	on_attach = on_attach,
-			-- })
-
-
-
-			-- Java (optional if using jdtls separately)
+			-- Java
 			lspconfig.jdtls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -125,6 +119,12 @@
 						},
 					},
 				},
+			})
+
+			-- ESLint
+			lspconfig.eslint.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
 			})
 
 			-- LSP Keymaps
