@@ -7,6 +7,7 @@ return {
 			sources = {
 				-- Lua
 				null_ls.builtins.formatting.stylua,
+				null_ls.builtins.formatting.shfmt,
 				-- -- Web (JS, TS, HTML, CSS, etc.)
 				-- null_ls.builtins.formatting.prettier.with({
 				-- 	extra_args = { "--config", os.getenv("HOME") .. "/.prettierrc" },

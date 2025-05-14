@@ -26,6 +26,6 @@ return {
         vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#2a2a2a", bold = true })         -- Dark gray but more visible
 
         ---key binding to toggle neotree
-        vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal left<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<cr>", { noremap = true, silent = true })
     end,
 }
