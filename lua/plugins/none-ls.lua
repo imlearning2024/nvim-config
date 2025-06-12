@@ -19,6 +19,8 @@ return {
 				null_ls.builtins.formatting.clang_format,
 				-- -- Shell
 				null_ls.builtins.formatting.shfmt,
+                -- rust
+                -- null_ls.builtins.formatting.ast_grep,
 			},
 		})
 
