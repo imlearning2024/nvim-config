@@ -137,7 +137,7 @@ return {
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 			-- 💡 Optional: show diagnostic popup manually
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-            vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostic, {});
+            vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostic, {})
 
 			--  Enable diagnostics
 			vim.diagnostic.config({
