@@ -8,11 +8,13 @@ return {
 				-- Lua
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.shfmt,
+				null_ls.builtins.formatting.asmfmt,
 				-- -- Web (JS, TS, HTML, CSS, etc.)
 				-- null_ls.builtins.formatting.prettier.with({
 				-- 	extra_args = { "--config", os.getenv("HOME") .. "/.prettierrc" },
 				-- }),
                 null_ls.builtins.formatting.prettier,
+                -- null_ls.builtins.formatting.eslint,
 				-- null_ls.builtins.diagnostics.eslint,
 				-- null_ls.builtins.code_actions.eslint,
 				-- -- C/C++

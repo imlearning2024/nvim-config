@@ -22,6 +22,9 @@ return {
 					"ts_ls",
 					"eslint",
 					"rust_analyzer",
+					"dockerls",
+                    "yamlls",
+                    "asm_lsp"
 				},
 			})
 		end,
@@ -42,6 +45,30 @@ return {
 
 			-- Lua
 			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+			-- docker
+			lspconfig.dockerls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+			-- yaml
+			lspconfig.yamlls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -78,6 +105,12 @@ return {
 
 			-- Python
 			lspconfig.pyright.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
+			-- Assembly
+			lspconfig.asm_lsp.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
@@ -137,7 +170,20 @@ return {
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 			-- 💡 Optional: show diagnostic popup manually
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-            vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostic, {})
+			-- vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostic, { desc = "List Diagnostics" })
+
+			-- Toggle floating diagnostic err
+			local diagnostics_hidden = false
+			vim.keymap.set("n", "<leader>td", function()
+				diagnostics_hidden = not diagnostics_hidden
+				if diagnostics_hidden then
+					vim.diagnostic.disable(0)
+					print("🔕 Diagnostics hidden")
+				else
+					vim.diagnostic.enable(0)
+					print("🔔 Diagnostics shown")
+				end
+			end, { desc = "Toggle diagnostics display" })
 
 			--  Enable diagnostics
 			vim.diagnostic.config({

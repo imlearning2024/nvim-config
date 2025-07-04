@@ -25,8 +25,11 @@ return {
 		vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = "#2a2a2a", bg = "#000000" }) -- White separator line
 		vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#2a2a2a", bold = true }) -- Dark gray but more visible
 
-		---key binding to toggle neotree
+	---key binding to toggle neotree
 		-- vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<cr>", { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal left<cr>", { noremap = true, silent = true })
+
+        --closes Neotree with Shift+Q
+        vim.keymap.set("n", "Q", ":Neotree close<CR>", { noremap = true, silent = true })
 	end,
 }

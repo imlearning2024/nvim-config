@@ -1,4 +1,3 @@
-
 return {
 	{
 		"hrsh7th/cmp-nvim-lsp",
@@ -32,11 +31,35 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					-- Use <Tab> to select completion or jump through snippets
+					["<Tab>"] = function(fallback)
+						local luasnip = require("luasnip")
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback() -- Fallback to the default <Tab> behavior (buffer navigation)
+						end
+					end,
+
+					-- <S-Tab> for reverse navigation through the completion or snippet fields
+					["<S-Tab>"] = function(fallback)
+						local luasnip = require("luasnip")
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback() -- Fallback to the default <S-Tab> behavior
+						end
+					end,
 				}),
 				sources = cmp.config.sources({
 					{ name = "luasnip" },
 					{ name = "emmet_ls" },
 					{ name = "nvim_lsp" },
+					{ name = "makefile_ls" },
 				}, {
 					{ name = "buffer" },
 				}),
